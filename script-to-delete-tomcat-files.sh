@@ -3,7 +3,7 @@
 echo "Welcome in the app! Here you can clear all tomcat files at once!"
 echo
 
-DIRECTORY=/home/luke/Tomcat_Directories
+DIRECTORY=/tmp
 
 DIRCOUNT=`find $DIRECTORY -maxdepth 1 -mindepth 1 -type d -name "tomcat*" | wc -l`
 
@@ -14,10 +14,7 @@ read answer
 
 if [ $answer == "y" ] || [ $answer == "Y" ]
 then
-	for dir in "/home/luke/Tomcat_Directories/tomcat*";
-	do
-	rm -r -f $dir
-	done
+	find /tmp -maxdepth 1 -name "tomcat*" -print0 | xargs -0 rm -r -f
 if [ $DIRCOUNT == 0 ]
 then
 echo "No directories to delete!"
